@@ -6235,6 +6235,14 @@ public final class Settings {
                 "camera_double_tap_power_gesture_disabled";
 
         /**
+         * Behavior of twilight on the device.
+         * One of {@link #TWILIGHT_MODE_LOCKED_OFF}, {@link #TWILIGHT_MODE_LOCKED_ON}
+         * or {@link #TWILIGHT_MODE_AUTO}.
+         * @hide
+         */
+        public static final String TWILIGHT_MODE = "twilight_mode";
+
+        /**
          * Whether the camera double twist gesture to flip between front and back mode should be
          * enabled.
          *
@@ -6392,6 +6400,12 @@ public final class Settings {
          */
         public static final String DEMO_USER_SETUP_COMPLETE
                 = "demo_user_setup_complete";
+
+        /**
+         * Whether to display the ADB notification.
+         * @hide
+         */
+        public static final String ADB_NOTIFY = "adb_notify";
 
         /**
          * This are the settings to be backed up.
