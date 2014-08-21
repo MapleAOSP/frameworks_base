@@ -62,7 +62,7 @@ public class KeyguardSimPinView extends KeyguardPinBasedInputView {
         @Override
         public void onSimStateChanged(int subId, int slotId, State simState) {
            if (DEBUG) Log.v(TAG, "onSimStateChanged(subId=" + subId + ",state=" + simState + ")");
-           resetState();
+           resetState(false);
        };
     };
 
@@ -75,8 +75,8 @@ public class KeyguardSimPinView extends KeyguardPinBasedInputView {
     }
 
     @Override
-    public void resetState() {
-        super.resetState();
+    public void resetState(boolean important) {
+        super.resetState(false);
         if (DEBUG) Log.v(TAG, "Resetting state");
         if (mShowDefaultMessage) {
             showDefaultMessage();
@@ -86,7 +86,7 @@ public class KeyguardSimPinView extends KeyguardPinBasedInputView {
     @Override
     protected void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        resetState();
+        resetState(false);
     }
 
     @Override
