@@ -171,6 +171,10 @@ public class KeyguardPasswordView extends KeyguardAbsKeyInputView
     protected void onFinishInflate() {
         super.onFinishInflate();
 
+        boolean imeOrDeleteButtonVisible = false;
+
+        mSecurityMessageDisplay.setDefaultMessage(R.string.kg_password_instructions);
+
         mImm = (InputMethodManager) getContext().getSystemService(
                 Context.INPUT_METHOD_SERVICE);
 
