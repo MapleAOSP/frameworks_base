@@ -2097,6 +2097,7 @@
         <item>restart</item>
         <item>bugreport</item>
         <item>users</item>
+        <item>dnd</item>
     </string-array>
 
     <!-- Number of milliseconds to hold a wake lock to ensure that drawing is fully
@@ -2192,7 +2193,7 @@
          support EMS and whether page info should be added at the beginning or the end.
          We use tag 'prefix' for position beginning and 'suffix' for position end.
          And use gid to distinguish different carriers which using same mcc and mnc.
-         Examples: <item>simOperatorNumber;position;gid(optional)</item>>
+         Examples: <item>simOperatorNumber;position;gid(optional)</item>
     -->
     <string-array translatable="false" name="no_ems_support_sim_operators">
         <!-- VZW -->
