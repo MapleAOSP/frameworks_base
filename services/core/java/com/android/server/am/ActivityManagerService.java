@@ -10749,8 +10749,10 @@ public final class ActivityManagerService extends ActivityManagerNative
                 if (singleton) {
                     userId = UserHandle.USER_SYSTEM;
                 }
-                cpi.applicationInfo = getAppInfoForUser(cpi.applicationInfo, userId);
-                checkTime(startTime, "getContentProviderImpl: got app info for user");
+                if (userId > 0) {
+                    cpi.applicationInfo = getAppInfoForUser(cpi.applicationInfo, userId);
+                    checkTime(startTime, "getContentProviderImpl: got app info for user");
+                }
 
                 String msg;
                 checkTime(startTime, "getContentProviderImpl: before checkContentProviderPermission");
@@ -10809,7 +10811,9 @@ public final class ActivityManagerService extends ActivityManagerNative
                                     + cpi.name);
                             return null;
                         }
-                        ai = getAppInfoForUser(ai, userId);
+                        if (userId > 0) {
+                            ai = getAppInfoForUser(ai, userId);
+                        }
                         cpr = new ContentProviderRecord(this, cpi, ai, comp, singleton);
                     } catch (RemoteException ex) {
                         // pm is in same process, this will never happen.
