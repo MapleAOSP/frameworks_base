@@ -1937,6 +1937,8 @@ private:
     void forEachConfiguration(bool ignoreMipmap, bool ignoreAndroidPackage,
                               bool includeSystemConfigs, const Func& f) const;
 
+    void verifyInvariants() const;
+
     mutable Mutex               mLock;
 
     // Mutex that controls access to the list of pre-filtered configurations
