@@ -137,6 +137,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
     private static final int MSG_SERVICE_STATE_CHANGE = 330;
     private static final int MSG_SCREEN_TURNED_ON = 331;
     private static final int MSG_SCREEN_TURNED_OFF = 332;
+    private static final int MSG_DREAMING_STATE_CHANGED = 333;
 
     /** Fingerprint state: Not listening to fingerprint. */
     private static final int FINGERPRINT_STATE_STOPPED = 0;
@@ -276,6 +277,9 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                     break;
                 case MSG_SCREEN_TURNED_OFF:
                     handleScreenTurnedOff();
+                    break;
+                case MSG_DREAMING_STATE_CHANGED:
+                    handleDreamingStateChanged(msg.arg1);
                     break;
             }
         }
@@ -988,6 +992,16 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         }
     }
 
+    private void handleDreamingStateChanged(int dreamStart) {
+        boolean showingDream = dreamStart == 1;
+        for (int i = 0; i < mCallbacks.size(); i++) {
+            KeyguardUpdateMonitorCallback cb = mCallbacks.get(i).get();
+            if (cb != null) {
+                cb.onDreamingStateChanged(showingDream);
+            }
+        }
+    }
+
     /**
      * IMPORTANT: Must be called from UI thread.
      */
@@ -1695,6 +1709,14 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
             mScreenOn = false;
         }
         mHandler.sendEmptyMessage(MSG_SCREEN_TURNED_OFF);
+    }
+
+    public void dispatchDreamingStarted() {
+        mHandler.sendMessage(mHandler.obtainMessage(MSG_DREAMING_STATE_CHANGED, 1, 0));
+    }
+
+    public void dispatchDreamingStopped() {
+        mHandler.sendMessage(mHandler.obtainMessage(MSG_DREAMING_STATE_CHANGED, 0, 0));
     }
 
     public boolean isDeviceInteractive() {
