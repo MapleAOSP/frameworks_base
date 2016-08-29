@@ -240,7 +240,7 @@ public class TunerService extends SystemUI {
                 TunerService.setTunerEnabled(context, false);
                 // Make them sit through the warning dialog again.
                 Settings.Secure.putInt(context.getContentResolver(),
-                        TunerFragment.SETTING_SEEN_TUNER_WARNING, 0);
+                        TunerFragment.SETTING_SEEN_TUNER_WARNING, 1);
                 if (onDisabled != null) {
                     onDisabled.run();
                 }
