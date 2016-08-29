@@ -667,24 +667,25 @@ public class OverlayManagerService extends SystemService {
     }
 
     private void updateAssets(int userId, String... targetPackageNames) {
-        final IActivityManager am = ActivityManagerNative.getDefault();
-        try {
-            Map<String, String[]> assetPaths = new ArrayMap<>();
-            synchronized (mLock) {
-                for (String targetPackageName : targetPackageNames) {
-                    String[] paths = mImpl.onGetAssetPaths(targetPackageName, userId);
-                    if (paths != null) {
-                        assetPaths.put(targetPackageName, paths);
-                    } else {
-                        Slog.w(TAG, String.format("Cannot update assets for package %s for user %d",
-                                    targetPackageName, userId));
-                    }
-                }
-            }
-            am.updateAssets(userId, assetPaths);
-        } catch (RemoteException e) {
-            // Intentionally left empty.
-        }
+        // TODO: uncomment when we integrate OMS properly
+        // final IActivityManager am = ActivityManagerNative.getDefault();
+        // try {
+        //     Map<String, String[]> assetPaths = new ArrayMap<>();
+        //     synchronized (mLock) {
+        //         for (String targetPackageName : targetPackageNames) {
+        //             String[] paths = mImpl.onGetAssetPaths(targetPackageName, userId);
+        //             if (paths != null) {
+        //                 assetPaths.put(targetPackageName, paths);
+        //             } else {
+        //                 Slog.w(TAG, String.format("Cannot update assets for package %s for user %d",
+        //                             targetPackageName, userId));
+        //             }
+        //         }
+        //     }
+        //     am.updateAssets(userId, assetPaths);
+        // } catch (RemoteException e) {
+        //     // Intentionally left empty.
+        // }
     }
 
     private void schedulePersistSettings() {
