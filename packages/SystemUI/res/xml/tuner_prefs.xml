@@ -94,6 +94,11 @@
     </PreferenceScreen>
 
     <Preference
+        android:key="nav_bar"
+        android:title="@string/nav_bar"
+        android:fragment="com.android.systemui.tuner.NavBarTuner" />
+
+    <Preference
         android:key="color_transform"
         android:title="@string/color_and_appearance"
         android:fragment="com.android.systemui.tuner.ColorAndAppearanceFragment" />
@@ -119,19 +124,15 @@
 
     </PreferenceScreen>
 
+    <!-- importance -->
     <Preference
-        android:key="nav_bar"
-        android:title="@string/nav_bar"
-        android:fragment="com.android.systemui.tuner.NavBarTuner" />
+            android:key="power_notification_controls"
+            android:title="@string/tuner_full_importance_settings"
+            android:fragment="com.android.systemui.tuner.PowerNotificationControlsFragment"/>
 
-    <Preference
-            android:key="other"
-            android:title="@string/other"
-            android:fragment="com.android.systemui.tuner.OtherPrefs" />
-
-    <!-- Warning, this goes last. -->
-    <Preference
-        android:summary="@string/tuner_persistent_warning"
-        android:selectable="false" />
+    <com.android.systemui.tuner.TunerSwitch
+            android:key="overview_nav_bar_gesture"
+            android:title="@string/overview_nav_bar_gesture"
+            android:summary="@string/overview_nav_bar_gesture_desc" />
 
 </PreferenceScreen>
