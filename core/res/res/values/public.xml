@@ -2732,7 +2732,6 @@
     <public type="style" name="Theme.Material.DayNight.NoActionBar.Overscan" />
     <public type="style" name="Theme.Material.DayNight.NoActionBar.TranslucentDecor" />
     <public type="style" name="Theme.Material.DayNight.Panel" />
-    <public type="style" name="Theme.Material.Light.DialogWhenLarge.DarkActionBar" />
     <public type="style" name="Theme.Material.DayNight.DialogWhenLarge.DarkActionBar" />
     <public type="style" name="Widget.Material.SeekBar.Discrete" id="0x010302d9" />
     <public type="style" name="Widget.Material.CompoundButton.Switch" id="0x010302da" />

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <color name="system_primary_color">@*android:color/material_grey_850</color>
+    <color name="system_secondary_color">@*android:color/material_grey_800</color>
+    <color name="system_accent_color">@*android:color/material_deep_teal_500</color>
+    <color name="qs_detail_transition">@*android:color/material_grey_850</color>
+
+    <!-- Tint color for the content on the notification overflow card. -->
+    <color name="keyguard_overflow_content_color">@*android:color/material_grey_800</color>
+
+    <!-- The "inside" of a notification, reached via longpress -->
+    <color name="notification_guts_bg_color">@color/system_secondary_color</color>
+    <color name="notification_guts_icon_tint">@*android:color/material_grey_800</color>
+    <color name="notification_guts_disabled_icon_tint">@*android:color/material_grey_800</color>
+
+    <!-- The color of the legacy notification background -->
+    <color name="notification_legacy_background_color">@*android:color/material_grey_850</color>
+    <!-- The color of the material notification background -->
+    <color name="notification_material_background_color">@*android:color/material_grey_850</color>
+    <!-- The color of the material notification background when dimmed -->
+    <color name="notification_material_background_dimmed_color">@*android:color/material_grey_850</color>
+    <!-- The color of the material notification background when low priority -->
+    <color name="notification_material_background_low_priority_color">@*android:color/material_grey_850</color>
+    <!-- The background color of the notification shade -->
+    <color name="notification_shade_background_color">@*android:color/material_grey_850</color>
+</resources>
