@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
-    Copyright (C) 2016 The Android Open Source Project
+    Copyright (C) 2016 MapleAOSP                      
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -13,12 +14,7 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:width="24.0dp"
-        android:height="24.0dp"
-        android:viewportWidth="24.0"
-        android:viewportHeight="24.0">
-    <path
-        android:fillColor="#4DFFFFFF"
-        android:pathData="M20.71,5.63l-2.34,-2.34c-0.39,-0.39 -1.02,-0.39 -1.41,0.0l-3.12,3.12 -1.93,-1.91 -1.41,1.41 1.42,1.42L3.0,16.25L3.0,21.0l4.75,0.0l8.92,-8.92 1.42,1.42 1.41,-1.41 -1.92,-1.92 3.12,-3.12c0.4,0.0 0.4,-1.0 0.01,-1.42zM6.92,19.0L5.0,17.08l8.06,-8.06 1.92,1.92L6.92,19.0z"/>
-</vector>
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/ic_night_mode_alpha"
+    android:tint="#4DFFFFFF" />
+
