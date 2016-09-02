@@ -797,7 +797,7 @@ public final class ShutdownThread extends Thread {
     private static Context getUiContext(Context context) {
         Context mUiContext = null;
         mUiContext = ThemeUtils.createUiContext(context);
-        mUiContext.setTheme(android.R.style.Theme_Material_DayNight_DarkActionBar);
+        mUiContext.setTheme(com.android.internal.R.style.Theme_Material_DayNight_DarkActionBar);
         return mUiContext != null ? mUiContext : context;
     }
 }
