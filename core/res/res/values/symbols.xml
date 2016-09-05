@@ -2627,5 +2627,4 @@
   <java-symbol type="layout" name="unsupported_display_size_dialog_content" />
   <java-symbol type="string" name="unsupported_display_size_message" /> 
 
-  <java-symbol type="drawable" name="work_widget_mask_view_background" />
 </resources>
