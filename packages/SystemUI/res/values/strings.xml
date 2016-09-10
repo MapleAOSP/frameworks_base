@@ -1137,7 +1137,8 @@
     <string name="volume_dialog_accessibility_dismissed_message">Volume controls hidden</string>
 
     <!-- Name of special SystemUI debug settings -->
-    <string name="system_ui_tuner">System UI Tuner</string>
+    <string name="system_ui_tuner">AOSP UI</string>
+    <string name="system_ui_tuner_summary">Android\'s baked in UI tweaks</string>
 
     <!-- Preference to show/hide embedded battery percentage [CHAR LIMIT=50] -->
     <string name="show_battery_percentage">Show embedded battery percentage</string>
