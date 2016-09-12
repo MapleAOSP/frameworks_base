@@ -6616,8 +6616,8 @@ public final class Settings {
             ENHANCED_VOICE_PRIVACY_ENABLED,
             TTY_MODE_ENABLED,
             INCALL_POWER_BUTTON_BEHAVIOR,
-            WIFI_DISCONNECT_DELAY_DURATION
-            ADVANCED_REBOOT,
+            WIFI_DISCONNECT_DELAY_DURATION,
+            ADVANCED_REBOOT
         };
 
         /**
