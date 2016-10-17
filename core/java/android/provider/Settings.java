@@ -6933,6 +6933,15 @@ public final class Settings {
         public static final String QS_DATA_ADVANCED = "qs_data_advanced";
 
         /**
+         * Status bar battery %
+         * 0: Hide the battery percentage
+         * 1: Display the battery percentage inside the icon
+         * 2: Display the battery percentage next to the icon
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -7015,7 +7024,8 @@ public final class Settings {
             SYSTEM_NAVIGATION_KEYS_ENABLED,
             QS_TILES,
             WIFI_DISCONNECT_DELAY_DURATION,
-            ADVANCED_REBOOT
+            ADVANCED_REBOOT,
+            STATUS_BAR_SHOW_BATTERY_PERCENT
         };
 
         /**

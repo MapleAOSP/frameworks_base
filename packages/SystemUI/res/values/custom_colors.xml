@@ -34,4 +34,7 @@
     <color name="ripple_material_light">#40000000</color>
     <color name="ripple_material_dark">#40ffffff</color>
 
+    <!-- Status bar battery level text color -->
+    <color name="status_bar_battery_level_text_color">#ffffff</color>
+
 </resources>
