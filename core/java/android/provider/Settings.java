@@ -6629,6 +6629,12 @@ public final class Settings {
         public static final String ADB_NOTIFY = "adb_notify";
 
         /**
+         * Holds comma separated list of ordering of QS tiles.
+         * @hide
+         */
+        public static final String QS_TILES = "sysui_qs_tiles";
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -6705,6 +6711,7 @@ public final class Settings {
             INCALL_POWER_BUTTON_BEHAVIOR,
             WIFI_DISCONNECT_DELAY_DURATION,
             ADVANCED_REBOOT
+            QS_TILES,
         };
 
         /**
