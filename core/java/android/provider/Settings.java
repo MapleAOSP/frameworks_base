@@ -6710,7 +6710,7 @@ public final class Settings {
             TTY_MODE_ENABLED,
             INCALL_POWER_BUTTON_BEHAVIOR,
             WIFI_DISCONNECT_DELAY_DURATION,
-            ADVANCED_REBOOT
+            ADVANCED_REBOOT,
             QS_TILES,
         };
 
