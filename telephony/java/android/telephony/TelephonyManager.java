@@ -866,7 +866,6 @@ public class TelephonyManager {
      * @param slotId of which deviceID is returned
      */
     public String getDeviceId(int slotId) {
-        android.util.SeempLog.record_str(8, ""+slotId);
         // FIXME this assumes phoneId == slotId
         try {
             IPhoneSubInfo info = getSubscriberInfo();
@@ -962,7 +961,6 @@ public class TelephonyManager {
      * {@link android.Manifest.permission#ACCESS_COARSE_LOCATION ACCESS_FINE_LOCATION}.
      */
     public CellLocation getCellLocation() {
-        android.util.SeempLog.record(49);
         try {
             ITelephony telephony = getITelephony();
             if (telephony == null) {
@@ -1060,7 +1058,6 @@ public class TelephonyManager {
      */
     @Deprecated
     public List<NeighboringCellInfo> getNeighboringCellInfo() {
-        android.util.SeempLog.record(50);
         try {
             ITelephony telephony = getITelephony();
             if (telephony == null)
@@ -2069,7 +2066,6 @@ public class TelephonyManager {
      * @hide
      */
     public String getSimSerialNumber(int subId) {
-        android.util.SeempLog.record_str(388, ""+subId);
         try {
             IPhoneSubInfo info = getSubscriberInfo();
             if (info == null)
@@ -2159,7 +2155,6 @@ public class TelephonyManager {
      * @hide
      */
     public String getSubscriberId(int subId) {
-        android.util.SeempLog.record_str(389, ""+subId);
         try {
             IPhoneSubInfo info = getSubscriberInfo();
             if (info == null)
@@ -2248,7 +2243,6 @@ public class TelephonyManager {
      * @hide
      */
     public String getLine1Number(int subId) {
-        android.util.SeempLog.record_str(9, ""+subId);
         String number = null;
         try {
             ITelephony telephony = getITelephony();
