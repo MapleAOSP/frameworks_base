@@ -3707,6 +3707,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
 
+          /**
+          * Whether to show the negociated charger current in the lockscreen
+          * @hide
+          */
+         public static final String LOCKSCREEN_CHARGING_CURRENT = "lockscreen_charging_current";
+ 
         /**
          * Sets the date string style
          * 0 - Regular style
