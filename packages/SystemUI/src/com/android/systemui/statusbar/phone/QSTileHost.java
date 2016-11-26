@@ -57,7 +57,6 @@ import com.android.systemui.qs.tiles.ImeTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.LteTile;
-import com.android.systemui.qs.tiles.NavBarTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.NightDisplayTile;
 import com.android.systemui.qs.tiles.RebootTile;
@@ -454,7 +453,6 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("usb_tether")) return new UsbTetherTile(this);
         else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("ime")) return new ImeTile(this);
-        else if (tileSpec.equals("navbar")) return new NavBarTile(this);
         else if (tileSpec.equals("lte")) return  new LteTile(this);
         else if (tileSpec.equals("heads_up")) return new HeadsUpTile(this);
         else if (tileSpec.equals("screen_off")) return new ScreenOffTile(this);
