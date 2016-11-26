@@ -77,10 +77,6 @@
     <!-- IME selector QS tile -->
     <string name="quick_settings_ime_label">IME</string>
 
-    <!-- LTE QS Tile -->
-    <string name="qs_lte_label">LTE</string>
-    <string name="lte_on">LTE ON </string>
-    <string name="lte_off">LTE OFF</string>
     <!-- Heads Up QS Tile -->
     <string name="quick_settings_heads_up_label">Heads up</string>
     <string name="accessibility_quick_settings_heads_up_off">Heads up off.</string>

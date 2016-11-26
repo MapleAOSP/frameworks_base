@@ -105,7 +105,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
     <string name="quick_settings_tiles_extra" translatable="false">
-        androidauto,saver,cast,caffeine,heads_up,hotspot,ime,inversion,lte,nfc,night,screen_off,screenshot,sync,usb_tether,work
+        androidauto,saver,cast,caffeine,heads_up,hotspot,ime,inversion,nfc,night,screen_off,screenshot,sync,usb_tether,work
     </string>
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
