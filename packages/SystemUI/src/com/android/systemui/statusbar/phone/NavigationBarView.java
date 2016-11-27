@@ -24,6 +24,7 @@ import android.animation.ValueAnimator;
 import android.app.ActivityManagerNative;
 import android.app.StatusBarManager;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.graphics.Rect;
@@ -31,6 +32,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.os.RemoteException;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseArray;
@@ -201,7 +203,7 @@ public class NavigationBarView extends LinearLayout {
         mButtonDisatchers.put(R.id.recent_apps, new ButtonDispatcher(R.id.recent_apps));
         mButtonDisatchers.put(R.id.menu, new ButtonDispatcher(R.id.menu));
         mButtonDisatchers.put(R.id.ime_switcher, new ButtonDispatcher(R.id.ime_switcher));
-    }
+ }
 
     public BarTransitions getBarTransitions() {
         return mBarTransitions;
@@ -275,6 +277,7 @@ public class NavigationBarView extends LinearLayout {
     }
 
     private void updateIcons(Context ctx, Configuration oldConfig, Configuration newConfig) {
+	boolean animate = isHomeAnimationEnabled();
         if (oldConfig.orientation != newConfig.orientation
                 || oldConfig.densityDpi != newConfig.densityDpi) {
             mDockedIcon = ctx.getDrawable(R.drawable.ic_sysbar_docked);
@@ -284,7 +287,6 @@ public class NavigationBarView extends LinearLayout {
             mBackLandIcon = mBackIcon;
             mBackAltIcon = ctx.getDrawable(R.drawable.ic_sysbar_back_ime);
             mBackAltLandIcon = mBackAltIcon;
-
             mHomeDefaultIcon = ctx.getDrawable(R.drawable.ic_sysbar_home);
             mRecentIcon = ctx.getDrawable(R.drawable.ic_sysbar_recent);
             mMenuIcon = ctx.getDrawable(R.drawable.ic_sysbar_menu);
@@ -292,6 +294,12 @@ public class NavigationBarView extends LinearLayout {
 
             updateCarModeIcons(ctx);
         }
+        if (animate) {
+            mHomeDefaultIcon = ctx.getDrawable(R.drawable.ic_sysbar_home_animated);
+        } else {
+            mHomeDefaultIcon = ctx.getDrawable(R.drawable.ic_sysbar_home);
+        }
+
     }
 
     @Override
@@ -594,7 +602,8 @@ public class NavigationBarView extends LinearLayout {
 
         postCheckForInvalidLayout("sizeChanged");
         super.onSizeChanged(w, h, oldw, oldh);
-    }
+        updateIcons(getContext(), Configuration.EMPTY, mConfiguration);
+   }
 
     private void notifyVerticalChangedListener(boolean newVertical) {
         if (mOnVerticalChangedListener != null) {
@@ -734,6 +743,11 @@ public class NavigationBarView extends LinearLayout {
 
     public interface OnVerticalChangedListener {
         void onVerticalChanged(boolean isVertical);
+    }
+
+    public boolean isHomeAnimationEnabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.HOME_PIXEL_ANIMATION, 0) == 1;
     }
 
 }
