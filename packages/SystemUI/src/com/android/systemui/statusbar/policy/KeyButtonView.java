@@ -58,6 +58,7 @@ public class KeyButtonView extends ImageView implements ButtonDispatcher.ButtonI
     private boolean mSupportsLongpress = true;
     private boolean mGestureAborted;
     private boolean mLongClicked;
+    private OnClickListener mOnClickListener;
 
     static AudioManager mAudioManager;
     static AudioManager getAudioManager(Context context) {
@@ -113,6 +114,12 @@ public class KeyButtonView extends ImageView implements ButtonDispatcher.ButtonI
 
     public void setCode(int code) {
         mCode = code;
+    }
+
+    @Override
+    public void setOnClickListener(OnClickListener onClickListener) {
+        super.setOnClickListener(onClickListener);
+        mOnClickListener = onClickListener;
     }
 
     public void loadAsync(String uri) {
@@ -196,6 +203,7 @@ public class KeyButtonView extends ImageView implements ButtonDispatcher.ButtonI
                     // Provide the same haptic feedback that the system offers for virtual keys.
                     performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 }
+                playSoundEffect(SoundEffectConstants.CLICK);
                 removeCallbacks(mCheckLongPress);
                 postDelayed(mCheckLongPress, ViewConfiguration.getLongPressTimeout());
                 break;
@@ -221,14 +229,14 @@ public class KeyButtonView extends ImageView implements ButtonDispatcher.ButtonI
                     if (doIt) {
                         sendEvent(KeyEvent.ACTION_UP, 0);
                         sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
-                        playSoundEffect(SoundEffectConstants.CLICK);
                     } else {
                         sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                     }
                 } else {
                     // no key code, just a regular ImageView
-                    if (doIt) {
-                        performClick();
+                    if (doIt && mOnClickListener != null) {
+                        mOnClickListener.onClick(this);
+                        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
                     }
                 }
                 removeCallbacks(mCheckLongPress);

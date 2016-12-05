@@ -21,6 +21,7 @@ import com.android.internal.app.AlertController;
 import com.android.internal.app.AlertController.AlertParams;
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
+import com.android.internal.policy.EmergencyAffordanceManager;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.internal.R;
@@ -28,7 +29,6 @@ import com.android.internal.widget.LockPatternUtils;
 
 import android.app.ActivityManager;
 import android.app.ActivityManagerNative;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -133,6 +133,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
     // Power menu customizations
     String mActions;
+    private final EmergencyAffordanceManager mEmergencyAffordanceManager;
 
     /**
      * @param context everything needs a context :(
@@ -169,6 +170,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
         mShowSilentToggle = SHOW_SILENT_TOGGLE && !mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_useFixedVolume);
 
+        mEmergencyAffordanceManager = new EmergencyAffordanceManager(context);
         updatePowerMenuActions();
     }
 
@@ -372,6 +374,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             }
             // Add here so we don't add more than one.
             addedKeys.add(actionKey);
+        }
+
+        if (mEmergencyAffordanceManager.needsEmergencyAffordance()) {
+            mItems.add(getEmergencyAction());
         }
 
         mAdapter = new MyAdapter();
@@ -610,6 +616,70 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             @Override
             public void onPress() {
                 Intent intent = new Intent(Settings.ACTION_SETTINGS);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
+            }
+        };
+    }
+
+    private Action getEmergencyAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.emergency_icon,
+                R.string.global_action_emergency) {
+            @Override
+            public void onPress() {
+                mEmergencyAffordanceManager.performEmergencyCall();
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
+            }
+        };
+    }
+
+    private Action getAssistAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_action_assist_focused,
+                R.string.global_action_assist) {
+            @Override
+            public void onPress() {
+                Intent intent = new Intent(Intent.ACTION_ASSIST);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent);
+            }
+
+            @Override
+            public boolean showDuringKeyguard() {
+                return true;
+            }
+
+            @Override
+            public boolean showBeforeProvisioning() {
+                return true;
+            }
+        };
+    }
+
+    private Action getVoiceAssistAction() {
+        return new SinglePressAction(com.android.internal.R.drawable.ic_voice_search,
+                R.string.global_action_voice_assist) {
+            @Override
+            public void onPress() {
+                Intent intent = new Intent(Intent.ACTION_VOICE_ASSIST);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(intent);
             }

@@ -485,8 +485,7 @@ public final class ContentService extends IContentService.Stub {
             SyncManager syncManager = getSyncManager();
             if (syncManager != null) {
                 syncManager.scheduleSync(account, userId, uId, authority, extras,
-                        0 /* no delay */, 0 /* no delay */,
-                        false /* onlyThoseWithUnkownSyncableState */);
+                        SyncStorageEngine.AuthorityInfo.UNDEFINED);
             }
         } finally {
             restoreCallingIdentity(identityToken);
@@ -550,12 +549,9 @@ public final class ContentService extends IContentService.Stub {
                 getSyncManager().updateOrAddPeriodicSync(info, runAtTime,
                         flextime, extras);
             } else {
-                long beforeRuntimeMillis = (flextime) * 1000;
-                long runtimeMillis = runAtTime * 1000;
                 syncManager.scheduleSync(
                         request.getAccount(), userId, callerUid, request.getProvider(), extras,
-                        beforeRuntimeMillis, runtimeMillis,
-                        false /* onlyThoseWithUnknownSyncableState */);
+                        SyncStorageEngine.AuthorityInfo.UNDEFINED);
             }
         } finally {
             restoreCallingIdentity(identityToken);
@@ -844,8 +840,8 @@ public final class ContentService extends IContentService.Stub {
         try {
             SyncManager syncManager = getSyncManager();
             if (syncManager != null) {
-                return syncManager.getIsSyncable(
-                        account, userId, providerName);
+                return syncManager.computeSyncable(
+                        account, userId, providerName, false);
             }
         } finally {
             restoreCallingIdentity(identityToken);
@@ -860,6 +856,8 @@ public final class ContentService extends IContentService.Stub {
         }
         mContext.enforceCallingOrSelfPermission(Manifest.permission.WRITE_SYNC_SETTINGS,
                 "no permission to write the sync settings");
+
+        syncable = normalizeSyncable(syncable);
 
         int userId = UserHandle.getCallingUserId();
         long identityToken = clearCallingIdentity();
@@ -1161,6 +1159,15 @@ public final class ContentService extends IContentService.Stub {
             mContext.enforceCallingOrSelfPermission(
                     Manifest.permission.INTERACT_ACROSS_USERS_FULL, message);
         }
+    }
+
+    private static int normalizeSyncable(int syncable) {
+        if (syncable > 0) {
+            return SyncStorageEngine.AuthorityInfo.SYNCABLE;
+        } else if (syncable == 0) {
+            return SyncStorageEngine.AuthorityInfo.NOT_SYNCABLE;
+        }
+        return SyncStorageEngine.AuthorityInfo.UNDEFINED;
     }
 
     /**
