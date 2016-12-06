@@ -5004,15 +5004,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    private KeyguardUpdateMonitorCallback mUpdateCallback = new KeyguardUpdateMonitorCallback() {
-        @Override
-        public void onDreamingStateChanged(boolean dreaming) {
-            if (dreaming) {
-                maybeEscalateHeadsUp();
-            }
-        }
-    };
-
     private final class DozeServiceHost implements DozeHost {
         // Amount of time to allow to update the time shown on the screen before releasing
         // the wakelock.  This timeout is design to compensate for the fact that we don't

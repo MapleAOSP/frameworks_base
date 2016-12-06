@@ -95,9 +95,9 @@ public class DozeParameters {
                 Settings.System.DOZE_PULSE_DURATION_IN, 500,
                     UserHandle.USER_CURRENT);
         }
+        return pickup
                 ? getInt("doze.pulse.duration.in.pickup", R.integer.doze_pulse_duration_in_pickup)
                 : getInt("doze.pulse.duration.in", R.integer.doze_pulse_duration_in);
-        return pickup
     }
 
     public int getPulseVisibleDuration() {
@@ -124,16 +124,6 @@ public class DozeParameters {
 
     public boolean getVibrateOnSigMotion() {
         return SystemProperties.getBoolean("doze.vibrate.sigmotion", false);
-    }
-
-    public boolean getPulseOnPickup() {
-        if (getOverwriteValue()) {
-            final int values = Settings.System.getIntForUser(mContext.getContentResolver(),
-                   Settings.System.DOZE_PULSE_ON_PICKUP, 1,
-                    UserHandle.USER_CURRENT);
-            return values != 0;
-        }
-        return getBoolean("doze.pulse.pickup", R.bool.doze_pulse_on_pick_up);
     }
 
     public boolean getVibrateOnPickup() {

@@ -174,7 +174,7 @@ public class QSAnimator implements Callback, PageListener, Listener, OnLayoutCha
                 Log.e(TAG, "tileView is null " + tile.getTileSpec());
                 continue;
             }
-            final TextView label = ((QSTileView) tileView).getLabel();
+            final View label = ((QSTileView) tileView).getLabelParent();
             final View tileIcon = tileView.getIcon().getIconView();
             if (count < mNumQuickTiles && mAllowFancy) {
                 // Quick tiles.

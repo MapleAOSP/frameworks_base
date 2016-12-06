@@ -1673,4 +1673,10 @@
     <!-- Label that replaces other notification controls when the notification is from the system
          and cannot be silenced (see @string/show_silently) or blocked (see @string/block) -->
     <string name="cant_silence_or_block">Notifications can\'t be silenced or blocked</string>
+
+    <!-- Toggle to enable the gesture to enter split-screen by swiping up from the Overview button. [CHAR LIMIT=60]-->
+    <string name="overview_nav_bar_gesture">Enable split-screen swipe-up gesture</string>
+    <!-- Description for the toggle to enable the gesture to enter split-screen by swiping up from the Overview button. [CHAR LIMIT=NONE]-->
+    <string name="overview_nav_bar_gesture_desc">Enable gesture to enter split-screen by swiping up from the Overview button</string>
+
 </resources>
